@@ -40,6 +40,11 @@ const Navbar = ({ user }) => {
   const logout = () => {
     dispatch(userActions.logout());
   };
+
+  const errorClear = () => {
+    dispatch(userActions.clearError());
+    navigate("/login");
+  };
   return (
     <div>
       {showSearchBox && (
@@ -93,7 +98,7 @@ const Navbar = ({ user }) => {
                 )}
               </div>
             ) : (
-              <div onClick={() => navigate("/login")} className="nav-icon">
+              <div onClick={() => errorClear()} className="nav-icon">
                 <FontAwesomeIcon icon={faUser} />
                 {!isMobile && <span style={{ cursor: "pointer" }}>로그인</span>}
               </div>
