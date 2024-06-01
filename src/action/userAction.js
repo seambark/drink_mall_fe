@@ -23,8 +23,10 @@ const registerUser =
       navigate("/login");
     } catch (error) {
       dispatch({ type: types.REGISTER_USER_FAIL, payload: error.error });
+      dispatch(commonUiActions.showToastMessage(`${error.error}`, "error"));
     }
   };
+
 export const userActions = {
   loginWithToken,
   loginWithEmail,
