@@ -52,7 +52,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       dispatch(
         productActions.createProduct({ ...formData, stock: totalStock })
       );
-      setShowDialog(false);
+      handleClose();
     } else {
       // 상품 수정하기
     }
