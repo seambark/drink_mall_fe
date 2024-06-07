@@ -6,12 +6,13 @@ const ProductCard = ({ data }) => {
   const navigate = useNavigate();
   const showProduct = (id) => {
     // 상품 디테일 페이지로 가기
+    navigate(`/product/${id}`);
   };
   return (
-    <div className="card" onClick={() => showProduct("hard_code")}>
-      <img src={data.image} alt="image" />
-      <div>{data.name}</div>
-      <div>{currencyFormat(data.price)}</div>
+    <div className="card" onClick={() => showProduct(data?._id)}>
+      <img src={data?.image} alt="image" />
+      <div>{data?.name}</div>
+      <div>₩ {currencyFormat(data?.price)}</div>
     </div>
   );
 };

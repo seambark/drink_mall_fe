@@ -47,7 +47,7 @@ const ProductAll = () => {
             </Col>
           ))
         ) : (
-          <tr>No Data to show</tr>
+          <p>No Data to show</p>
         )}
       </Row>
       <ReactPaginate
