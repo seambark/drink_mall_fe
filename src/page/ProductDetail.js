@@ -12,7 +12,7 @@ import "../style/productDetail.style.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { selectedProduct } = useSelector((state) => state.product);
-  const sizeArray = Object.keys(selectedProduct?.stock);
+  const sizeArray = selectedProduct ? Object.keys(selectedProduct?.stock) : [];
   const { user } = useSelector((state) => state.user);
   const [size, setSize] = useState("");
   const { id } = useParams();
