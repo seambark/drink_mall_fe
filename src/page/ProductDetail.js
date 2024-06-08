@@ -12,7 +12,8 @@ import "../style/productDetail.style.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { selectedProduct } = useSelector((state) => state.product);
-
+  const sizeArray = Object.keys(selectedProduct?.stock);
+  const { user } = useSelector((state) => state.user);
   const [size, setSize] = useState("");
   const { id } = useParams();
   const [sizeError, setSizeError] = useState(false);
@@ -21,11 +22,19 @@ const ProductDetail = () => {
 
   const addItemToCart = () => {
     //사이즈를 아직 선택안했다면 에러
+    if (size === "") {
+      setSizeError(true);
+      return;
+    }
     // 아직 로그인을 안한유저라면 로그인페이지로
+    if (!user) navigate("/login");
     // 카트에 아이템 추가하기
+    dispatch(cartActions.addToCart({ id, size }));
   };
   const selectSize = (value) => {
     // 사이즈 추가하기
+    if (sizeError) setSizeError(false);
+    setSize(value);
   };
 
   //카트에러가 있으면 에러메세지 보여주기
@@ -34,6 +43,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     //상품 디테일 정보 가져오기
+
     dispatch(productActions.getProductDetail(id));
   }, [id]);
 
@@ -52,7 +62,7 @@ const ProductDetail = () => {
             className="drop-down size-drop-down"
             title={size}
             align="start"
-            onSelect={(value) => setSize(value)}
+            onSelect={(value) => selectSize(value)}
           >
             <Dropdown.Toggle
               className="size-drop-down"
@@ -63,8 +73,8 @@ const ProductDetail = () => {
               {size === "" ? "사이즈 선택" : size.toUpperCase()}
             </Dropdown.Toggle>
             <Dropdown.Menu className="size-drop-down">
-              {Object.keys(selectedProduct?.stock).map((item) =>
-                selectedProduct?.stock[item] > 0 ? (
+              {sizeArray?.map((item) =>
+                sizeArray?.length > 0 ? (
                   <Dropdown.Item eventKey={item}>
                     {item.toUpperCase()}
                   </Dropdown.Item>
