@@ -16,7 +16,6 @@ import { cartActions } from "../action/cartAction";
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
   const { cartItemQty } = useSelector((state) => state.cart);
-  const [cartQty, setCartQty] = useState(0);
   const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
   const [showSearchBox, setShowSearchBox] = useState(false);
   const menuList = [
@@ -49,11 +48,8 @@ const Navbar = ({ user }) => {
   useEffect(() => {
     if (user) {
       dispatch(cartActions.getCartQty());
-      setCartQty(cartItemQty);
-    } else {
-      setCartQty(0);
     }
-  }, [cartItemQty, user]);
+  }, [user]);
 
   return (
     <div>
@@ -115,10 +111,9 @@ const Navbar = ({ user }) => {
             )}
             <div onClick={() => navigate("/cart")} className="nav-icon">
               <FontAwesomeIcon icon={faShoppingBag} />
-              {console.log(cartItemQty)}
               {!isMobile && (
                 <span style={{ cursor: "pointer" }}>{`쇼핑백(${
-                  cartQty || 0
+                  cartItemQty || 0
                 })`}</span>
               )}
             </div>
