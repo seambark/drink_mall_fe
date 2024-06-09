@@ -1,7 +1,7 @@
 import api from "../utils/api";
 import * as types from "../constants/cart.constants";
 import { commonUiActions } from "../action/commonUiAction";
-import { type } from "@testing-library/user-event/dist/type";
+// import { type } from "@testing-library/user-event/dist/type";
 const addToCart =
   ({ id, size }) =>
   async (dispatch) => {
@@ -26,11 +26,41 @@ const addToCart =
     }
   };
 
-const getCartList = () => async (dispatch) => {};
+const getCartList = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_LIST_REQUEST });
+    const response = await api.get("/cart");
+
+    if (response.status !== 200) throw new Error(response.error);
+    console.log(response.data);
+    dispatch({
+      type: types.GET_CART_LIST_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_CART_LIST_FAIL, payload: error.error });
+  }
+};
 const deleteCartItem = (id) => async (dispatch) => {};
 
 const updateQty = (id, value) => async (dispatch) => {};
-const getCartQty = () => async (dispatch) => {};
+
+const getCartQty = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_QTY_REQUEST });
+    const response = await api.get("/cart");
+
+    if (response.status !== 200) throw new Error(response.error);
+
+    const cartQty = response.data.data;
+    dispatch({
+      type: types.GET_CART_QTY_SUCCESS,
+      payload: cartQty.length,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_CART_QTY_FAIL });
+  }
+};
 export const cartActions = {
   addToCart,
   getCartList,

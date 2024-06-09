@@ -12,7 +12,7 @@ import "../style/productDetail.style.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { selectedProduct } = useSelector((state) => state.product);
-  const sizeArray = selectedProduct ? Object.keys(selectedProduct?.stock) : [];
+  const sizeList = selectedProduct ? selectedProduct?.stock : [];
   const { user } = useSelector((state) => state.user);
   const [size, setSize] = useState("");
   const { id } = useParams();
@@ -73,13 +73,13 @@ const ProductDetail = () => {
               {size === "" ? "사이즈 선택" : size.toUpperCase()}
             </Dropdown.Toggle>
             <Dropdown.Menu className="size-drop-down">
-              {sizeArray?.map((item) =>
-                sizeArray?.length > 0 ? (
-                  <Dropdown.Item eventKey={item}>
+              {Object.keys(sizeList)?.map((item) =>
+                sizeList[item] > 0 ? (
+                  <Dropdown.Item key={item} eventKey={item}>
                     {item.toUpperCase()}
                   </Dropdown.Item>
                 ) : (
-                  <Dropdown.Item eventKey={item} disabled={true}>
+                  <Dropdown.Item key={item} eventKey={item} disabled={true}>
                     {item.toUpperCase()}
                   </Dropdown.Item>
                 )
