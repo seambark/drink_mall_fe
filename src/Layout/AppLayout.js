@@ -23,7 +23,7 @@ const AppLayout = ({ children }) => {
   // }
 
   return (
-    <div>
+    <div className="wrap">
       <ToastMessage />
       {location.pathname.includes("admin") ? (
         <Row className="vh-100">

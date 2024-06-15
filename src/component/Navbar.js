@@ -142,7 +142,7 @@ const Navbar = ({ user }) => {
         <ul className="menu">
           {menuList.map((menu, index) => (
             <li key={index}>
-              <a href="#">{menu}</a>
+              <a href={`?${menu}`}>{menu}</a>
             </li>
           ))}
         </ul>

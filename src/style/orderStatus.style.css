@@ -1,54 +1,96 @@
-.status-card{
+.status-card {
     background-color: white;
-    padding:10px;
+    padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 20px;
+    border-radius: 5px;
 }
-.status-card:hover{
+
+.status-card img {
+    border-radius: 5px;
+}
+
+.status-card:hover {
     background-color: rgba(238, 30, 30, 0.148);
 }
-.vertical-middle{
+
+.vertical-middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.status-card-container{
+
+.status-card-container {
     margin-bottom: 20px;
     max-width: 750px;
-   
+
 }
 
 
 
 
-.order-button-area{
+.order-button-area {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
 }
-.order-button-area button{
+
+.order-button-area button {
     margin-left: 20px;
 }
 
-.text-align-center{
+.text-align-center {
     text-align: center;
     margin-bottom: 5px;
 }
-.text-12{
+
+.text-12 {
     font-size: 12px;
 
 }
 
-.no-order-box{
+.no-order-box {
     background-color: white;
     text-align: center;
-    padding:20px
+    padding: 20px
+}
+
+.order-info-area {
+    padding-left: 0;
+}
+
+.order-info-area .order-info {
+    width: calc(100% - 96px);
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.status-card .order-img {
+    display: inline-block;
+    vertical-align: top;
 }
 
 @media screen and (max-width: 63rem) {
-   .order-info{
-    margin-left: 20px;
+    .status-card-container {
+        margin-bottom: 20px;
+        padding: 0 15px;
+        max-width: inherit;
+        width: 100%;
     }
-  }
 
-  
+    .status-card {
+        margin: 0 0 20px 0;
+        padding: 15px;
+    }
+
+    .status-card .order-img {
+        padding: 0;
+    }
+
+    .status-card img {
+        /* width: 100%; */
+    }
+
+
+}

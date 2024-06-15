@@ -11,13 +11,15 @@ const Sidebar = () => {
     navigate(url);
   };
 
+  const handleClose = () => setShow(false);
+
   const NavbarContent = () => {
     return (
       <div>
         <Link to="/">
           <img width={100} src="/image/coffee_logo.png" alt="coffee_logo.png" />
         </Link>
-        <div className="sidebar-item">Admin Account</div>
+        <div className="sidebar-title">Admin Account</div>
         <ul className="sidebar-area">
           <li
             className="sidebar-item"
@@ -53,6 +55,7 @@ const Sidebar = () => {
             placement="start"
             className="sidebar"
             show={show}
+            onHide={handleClose}
           >
             <Offcanvas.Header closeButton></Offcanvas.Header>
             <Offcanvas.Body>{NavbarContent()}</Offcanvas.Body>

@@ -24,11 +24,11 @@ const CartProductCard = ({ item }) => {
   return (
     <div className="product-card-cart">
       <Row>
-        <Col md={2} xs={12}>
-          <img src={item?.productId.image} width={90} alt="제품" />
+        <Col md={3} xs={12}>
+          <img src={item?.productId.image} width={100} alt="제품" />
         </Col>
-        <Col md={10} xs={12}>
-          <div className="display-flex space-between">
+        <Col md={9} xs={12}>
+          <div className="display-flex space-between item-title">
             <h3>{item?.productId.name}</h3>
             <button className="trash-button">
               <FontAwesomeIcon
@@ -38,35 +38,34 @@ const CartProductCard = ({ item }) => {
               />
             </button>
           </div>
-
-          <div>
-            <strong>₩ {currencyFormat(item?.productId.price)}</strong>
-          </div>
-          <div>Size: {item?.size.toUpperCase()}</div>
-          <div>
-            Total: ₩ {currencyFormat(item?.productId.price * item?.qty)}
-          </div>
-          <div>
-            Quantity:
-            <Form.Select
-              onChange={(event) =>
-                handleQtyChange(item?._id, event.target.value)
-              }
-              required
-              defaultValue={item.qty}
-              className="qty-dropdown"
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-            </Form.Select>
+          <div className="item-detail">
+            <p>
+              <strong>₩ {currencyFormat(item?.productId.price)}</strong>
+            </p>
+            <p>Size: {item?.size.toUpperCase()}</p>
+            <p>Total: ₩ {currencyFormat(item?.productId.price * item?.qty)}</p>
+            <p>
+              <span className="sub-title">Quantity:</span>
+              <Form.Select
+                onChange={(event) =>
+                  handleQtyChange(item?._id, event.target.value)
+                }
+                required
+                defaultValue={item.qty}
+                className="qty-dropdown"
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
+                <option value={9}>9</option>
+                <option value={10}>10</option>
+              </Form.Select>
+            </p>
           </div>
         </Col>
       </Row>

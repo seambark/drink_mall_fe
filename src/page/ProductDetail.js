@@ -63,9 +63,13 @@ const ProductDetail = () => {
           <img src={selectedProduct?.image} className="w-100" alt="image" />
         </Col>
         <Col className="product-info-area" sm={6}>
-          <div className="product-info">{selectedProduct?.name}</div>
-          <div className="product-info">₩ {selectedProduct?.price}</div>
-          <div className="product-info">{selectedProduct?.description}</div>
+          <div className="product-info title">{selectedProduct?.name}</div>
+          <div className="product-info price">
+            ₩ {currencyFormat(selectedProduct?.price)}
+          </div>
+          <div className="product-info description">
+            {selectedProduct?.description}
+          </div>
 
           <Dropdown
             className="drop-down size-drop-down"

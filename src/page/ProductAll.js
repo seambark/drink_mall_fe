@@ -40,8 +40,8 @@ const ProductAll = () => {
   return (
     <Container>
       <Row>
-        {productList.length > 0 ? (
-          productList.map((item, index) => (
+        {productList?.length > 0 ? (
+          productList?.map((item, index) => (
             <Col md={3} sm={12} key={index}>
               <ProductCard data={item} />
             </Col>
@@ -50,27 +50,29 @@ const ProductAll = () => {
           <p>No Data to show</p>
         )}
       </Row>
-      <ReactPaginate
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={totalPageNum}
-        forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active"
-        className="display-center list-style-none"
-      />
+      {productList?.length > searchQuery.pageSize && (
+        <ReactPaginate
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={totalPageNum}
+          forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          className="display-center list-style-none"
+        />
+      )}
     </Container>
   );
 };

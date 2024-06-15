@@ -9,10 +9,10 @@ const ProductCard = ({ data }) => {
     navigate(`/product/${id}`);
   };
   return (
-    <div className="card" onClick={() => showProduct(data?._id)}>
+    <div className="card product" onClick={() => showProduct(data?._id)}>
       <img src={data?.image} alt="image" />
-      <div>{data?.name}</div>
-      <div>₩ {currencyFormat(data?.price)}</div>
+      <div className="title">{data?.name}</div>
+      <div className="price">₩ {currencyFormat(data?.price)}</div>
     </div>
   );
 };
